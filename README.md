@@ -1,5 +1,5 @@
 # ESP32-Load-Cell-Monitor
-Load Cell Monitor designed using an ESP32, allowing wireless viewing on your phone through a hosted webpage.  Load call data can also be logged using an SD card.
+Load Cell Monitor designed using an ESP32, allowing wireless viewing on your phone through a hosted webpage.  Load cell data can also be logged using an SD card.
 <br/><br/>
 <h2>Material:</h2>
 •  ESP32 Board (I used <a href="https://www.amazon.com/AITRIP-Development-Microcontroller-Integrated-Amplifiers/dp/B0B19KRPRC/ref=sr_1_5?crid=2V78DRIQ2YHNC&keywords=airtip+esp32+usb+c&qid=1687975641&sprefix=airtip+esp32+usb%2Caps%2C130&sr=8-5">ESP-WROOM-32</a>) <br/>
@@ -10,7 +10,18 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing on your pho
 •  Power Supply <br/>
 <br />
 <h2>Instructions:</h2>
-1️⃣ Wire ESP32 as pictured below
+1️⃣ Wire ESP32
+<br/>
+<br/>
+<b><u>SD Card</u></b><br/>
+3v3 wire to 3v ESP32<br/>
+GND wire to ground on ESP32<br/>
+CS wire to _ on ESP32<br/>
+MOSI wire to _ on ESP32<br/>
+CLK wire to _ on ESP32<br/>
+MISO wire to _ on ESP32<br/>
+<br/>
+<b><u>HX711</u></b><br/>
 <br/>
 2️⃣ Open provided .ino file in your Arduino IDE download the required libraries and upload the code to the board
 <br/>
