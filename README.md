@@ -15,7 +15,7 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 <br/>
 <br/>
 <b><u>SD Card</u></b><br/>
-•  <span style="color:red">3v3 wire</span> to 3v ESP32<br/>
+•  3v3 wire to 3v ESP32<br/>
 •  GND wire to ground on ESP32<br/>
 •  CS wire to _ on ESP32<br/>
 •  MOSI wire to _ on ESP32<br/>
