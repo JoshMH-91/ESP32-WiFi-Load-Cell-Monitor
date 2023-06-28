@@ -37,8 +37,8 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing on your pho
 <br/>
 <h2>📚 Required Libraries</h2>
 •  WiFi, <code>#include  &lt;WiFi.h &gt;</code></br>
-•  AsyncTCP, <code>#include &lt;AsyncTCP.h &gt;</code></br>
-•  AESPAsyncWebServer, <code>#include &lt;ESPAsyncWebServer.h &gt;</code></br>
+•  <a href="https://github.com/me-no-dev/AsyncTCP.git">AsyncTCP</a>, <code>#include &lt;AsyncTCP.h &gt;</code></br>
+•  <a href="https://github.com/me-no-dev/ESPAsyncWebServer.git">ESPAsyncWebServer</a>, <code>#include &lt;ESPAsyncWebServer.h &gt;</code></br>
 •  HX711, <code>#include &lt;HX711.h &gt;</code></br>
 •  SPI, <code>#include &lt;SPI.h &gt;</code></br>
 •  SD, <code>#include &lt;SD.h &gt;</code></br>
