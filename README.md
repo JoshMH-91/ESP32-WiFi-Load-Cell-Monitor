@@ -31,4 +31,19 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing on your pho
 
 3️⃣ Copy files in SD folder to your SD card.
 <br/>
+<br/>
+⭐ Icons used in project created by <a href="https://dryicons.com">DryIcons.com</a>
+<br/>
+<br/>
+<h2>📚 Required Libraries</h2>
+•  WiFi, <code>#include  &lt;WiFi.h &gt;</code></br>
+•  AsyncTCP, <code>#include &lt;AsyncTCP.h &gt;</code></br>
+•  AESPAsyncWebServer, <code>#include &lt;ESPAsyncWebServer.h &gt;</code></br>
+•  HX711, <code>#include &lt;HX711.h &gt;</code></br>
+•  SPI, <code>#include &lt;SPI.h &gt;</code></br>
+•  SD, <code>#include &lt;SD.h &gt;</code></br>
+•  ESPmDNS, <code>#include &lt;ESPmDNS.H &gt;</code></br>
+
+
+
 
