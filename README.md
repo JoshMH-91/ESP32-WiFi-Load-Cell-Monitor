@@ -1,7 +1,8 @@
 # ESP32-Load-Cell-Monitor
 Load Cell Monitor designed using an ESP32, allowing wireless viewing on your phone through a hosted webpage.  Load cell data can also be logged using an SD card.
 <br/><br/>
-<h2>Material:</h2>
+🚧 This page is under construction<br/>
+<h2>📋 Material:</h2>
 •  ESP32 Board (I used <a href="https://www.amazon.com/AITRIP-Development-Microcontroller-Integrated-Amplifiers/dp/B0B19KRPRC/ref=sr_1_5?crid=2V78DRIQ2YHNC&keywords=airtip+esp32+usb+c&qid=1687975641&sprefix=airtip+esp32+usb%2Caps%2C130&sr=8-5">ESP-WROOM-32</a>) <br/>
 •  Load Cell (I used <a href="https://www.amazon.com/Portable-High-Precision-Pressure-Tension-Weighing/dp/B077YHNNCP/ref=sr_1_10?crid=2D2NQGT8I60AP&keywords=arduino+load+cell+s+beam&qid=1687975736&sprefix=arduino+load+cell+s+beam%2Caps%2C116&sr=8-10">S-Beam Load Cell</a>)<br/>
 •  HX711 Board (I used <a href="https://www.amazon.com/SparkFun-Load-Cell-Amplifier-HX711/dp/B079LVMC6X/ref=sr_1_3?crid=2LGIDV7QPOFLD&keywords=hx711&qid=1687975811&sprefix=hx71%2Caps%2C129&sr=8-3">SparkFun HX711 - Load Cell Amplifier</a>)<br/>
@@ -9,7 +10,7 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing on your pho
 •  Mirco SD Card<br/>
 •  Power Supply <br/>
 <br />
-<h2>Instructions:</h2>
+<h2>📄 Instructions:</h2>
 1️⃣ Wire ESP32
 <br/>
 <br/>
