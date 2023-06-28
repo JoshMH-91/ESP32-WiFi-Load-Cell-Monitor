@@ -8,7 +8,7 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  HX711 Board (I used <a href="https://www.amazon.com/SparkFun-Load-Cell-Amplifier-HX711/dp/B079LVMC6X/ref=sr_1_3?crid=2LGIDV7QPOFLD&keywords=hx711&qid=1687975811&sprefix=hx71%2Caps%2C129&sr=8-3">SparkFun HX711 - Load Cell Amplifier</a>)<br/>
 •  Mirco SD Card Reader (I used this <a href="https://www.amazon.com/UMLIFE-Interface-Conversion-Compatible-Raspberry/dp/B0989SM146/ref=sr_1_4?crid=17GH67ZH9OQ3M&keywords=arduino+micro+sd+reader&qid=1687975929&sprefix=arduino+micro+sd+reade%2Caps%2C126&sr=8-4">SD Card Reader</a>)<br/>
 •  Mirco SD Card<br/>
-•  Power Supply <br/>
+•  Power Supply (can be used with 🔋 battery for mobile load cell)<br/>
 <br />
 <h2>📄 Instructions:</h2>
 1️⃣ Wire ESP32
