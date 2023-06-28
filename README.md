@@ -43,6 +43,10 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  SPI, <code>#include &lt;SPI.h &gt;</code></br>
 •  SD, <code>#include &lt;SD.h &gt;</code></br>
 •  ESPmDNS, <code>#include &lt;ESPmDNS.H &gt;</code></br>
+<br/>
+<h2>📈 Example Data Ouput</h2>
+![image](https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/1fb20cde-3cae-4abf-a05e-feec42eb2ddb)
+
 
 
 
