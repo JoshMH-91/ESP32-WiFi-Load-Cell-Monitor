@@ -1,5 +1,5 @@
 # ESP32-WiFi-Load-Cell-Monitor
-Load Cell Monitor designed using an ESP32, allowing wireless viewing on your remote through a hosted webpage on SD card.  Load cell data can also be logged using an SD card.
+Load Cell Monitor designed using an ESP32, allowing wireless viewing through a hosted webpage stored on SD card.  Load cell data can also be logged using an SD card.
 <br/><br/>
 🚧 This page is under construction<br/>
 <h2>📋 Material:</h2>
