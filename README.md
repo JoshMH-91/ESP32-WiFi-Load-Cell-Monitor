@@ -20,7 +20,7 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  <b>CS</b> wire to <b>pin 21</b> on ESP32<br/>
 •  <b>MOSI</b> wire to <b>pin 23</b> on ESP32<br/>
 •  <b>CLK</b> wire to <b>pin 18</b> on ESP32<br/>
-•  <b>MISO wire to <b>pin 19</b> on ESP32<br/>
+•  <b>MISO</b> wire to <b>pin 19</b> on ESP32<br/>
 <br/>
 <b><u>HX711</u></b><br/>
 •  <b>VDD</b> wire to <b>3v</b> on ESP32<br/>
