@@ -8,3 +8,12 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing on your pho
 •  Mirco SD Card Reader (I used this <a href="https://www.amazon.com/UMLIFE-Interface-Conversion-Compatible-Raspberry/dp/B0989SM146/ref=sr_1_4?crid=17GH67ZH9OQ3M&keywords=arduino+micro+sd+reader&qid=1687975929&sprefix=arduino+micro+sd+reade%2Caps%2C126&sr=8-4">SD Card Reader</a>)<br/>
 •  Mirco SD Card<br/>
 •  Power Supply <br/>
+<br />
+<h2>Instructions:</h2>
+1️⃣ Wire ESP32 as pictured below
+<br/>
+2️⃣ Open provided .ino file in your Arduino IDE download the required libraries and upload the code to the board
+<br/>
+3️⃣ Copy files in SD folder to your SD card.
+<br/>
+
