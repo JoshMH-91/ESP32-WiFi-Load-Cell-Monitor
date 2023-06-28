@@ -23,11 +23,11 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  MISO wire to 19 on ESP32<br/>
 <br/>
 <b><u>HX711</u></b><br/>
-•  VDD wire to 3v on ESP32<br/>
-•  VCC wire to 3v on ESP32<br/>
-•  DAT wire to pin 25 on ESP32<br/>
-•  CLK wire to pin 26 ESP32<br/>
-•  GND wire to ground on ESP32<br/>
+•  <b>VDD</b> wire to <b>3v</b> on ESP32<br/>
+•  <b>VCC</b> wire to <b>3v</b> on ESP32<br/>
+•  <b>DAT</b> wire to <b>pin 25</b> on ESP32<br/>
+•  <b>CLK</b> wire to <b>pin 26</b> ESP32<br/>
+•  <b>GND</b> wire to <b>ground</b> on ESP32<br/>
 <br/>
 
 2️⃣ Open provided .ino file in your Arduino IDE download the required libraries and upload the code to the board
