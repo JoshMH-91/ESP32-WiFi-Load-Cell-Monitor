@@ -15,15 +15,19 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 <br/>
 <br/>
 <b><u>SD Card</u></b><br/>
-•  3v3 wire to 3v ESP32<br/>
+•  3v3 wire to 3v on ESP32<br/>
 •  GND wire to ground on ESP32<br/>
-•  CS wire to _ on ESP32<br/>
-•  MOSI wire to _ on ESP32<br/>
-•  CLK wire to _ on ESP32<br/>
-•  MISO wire to _ on ESP32<br/>
+•  CS wire to pin 21 on ESP32<br/>
+•  MOSI wire to pin 23 on ESP32<br/>
+•  CLK wire to pin 18 on ESP32<br/>
+•  MISO wire to 19 on ESP32<br/>
 <br/>
 <b><u>HX711</u></b><br/>
-•  <br/>
+•  VDD wire to 3v on ESP32<br/>
+•  VCC wire to 3v on ESP32<br/>
+•  DAT wire to pin 25 on ESP32<br/>
+•  CLK wire to pin 26 ESP32<br/>
+•  GND wire to ground on ESP32<br/>
 <br/>
 
 2️⃣ Open provided .ino file in your Arduino IDE download the required libraries and upload the code to the board
