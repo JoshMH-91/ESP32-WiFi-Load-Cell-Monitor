@@ -45,7 +45,7 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  ESPmDNS, <code>#include &lt;ESPmDNS.H &gt;</code></br>
 <br/>
 <h2>📈 Example Data Ouput</h2>
-This is an example of a chart created with the raw data stored in the SD card:
+This is an example of a chart created with the raw data recorded on the SD card:
 <br/>
 <img src="https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/1fb20cde-3cae-4abf-a05e-feec42eb2ddb)" width="40%" height="40%">
 
