@@ -45,6 +45,8 @@ Future roadmap: <br/>
 •  <b>CLK</b> wire to <b>pin 26</b> ESP32<br/>
 •  <b>GND</b> wire to <b>ground</b> on ESP32<br/>
 <br/>
+<img src="https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/f2935c7d-2c23-4556-ae32-02b65b569bdd">
+<br/>
 2️⃣ Copy files in SD folder to your SD card.
 <br/>
 <br/>
