@@ -26,7 +26,6 @@ File dataFile;
 
 // Variable to hold the current weight
 float currentWeight = 0.0;
-float maxWeight = 0.01;
 
 // Boolean flag to indicate if we are currently recording data
 bool isRecording = false;
@@ -103,11 +102,6 @@ server.on("/getWeight", HTTP_GET, [](AsyncWebServerRequest *request){
   request->send(200, "text/plain", response);
 });
 
-server.on("/getMaxWeight", HTTP_GET, [](AsyncWebServerRequest *request){
-  String response = String(maxWeight);
-  request->send(200, "text/plain", response);
-});
-
 server.on("/tare", HTTP_POST, [](AsyncWebServerRequest *request){
   scale.tare();
   request->redirect("/");
@@ -139,13 +133,6 @@ server.on("/stop.png", HTTP_GET, [](AsyncWebServerRequest *request){
   } else {
     request->send(404, "text/plain", "File not found");
   }
-});
-
- 
-
-server.on("/resetMaxWeight", HTTP_POST, [](AsyncWebServerRequest *request){
-  maxWeight = 0.01;
-  request->send(200);
 });
 
   server.begin();
