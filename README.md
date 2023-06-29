@@ -5,7 +5,12 @@ This is a Load Cell Monitor designed using an ESP32, allowing wireless viewing t
 This project is perfect for hobbyists and professionals looking to monitor weight or load changes wirelessly!
 <br/>
 <br/>
-🚧 This page is under construction <br/> 
+🚧 This page is under construction <br/>
+<br/>
+Future roadmap: <br/>
+•  Improve Error Handling<br/>
+•  Load SSID and Password from config.txt<br/>
+•  restructure/clean up code<br/>
 <h2>⚙️ Features</h2>
 •  Display current weight<br/>
 •  Tare Scale<br/>
