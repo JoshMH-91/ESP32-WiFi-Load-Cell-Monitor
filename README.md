@@ -1,11 +1,15 @@
 # ESP32-WiFi-Load-Cell-Monitor
-Load Cell Monitor designed using an ESP32, allowing wireless viewing through a hosted webpage stored on SD card.  Load cell data can also be logged using an SD card.
-<br/><br/>
-🚧 This page is under construction<br/>
+This is a Load Cell Monitor designed using an ESP32, allowing wireless viewing through a hosted webpage stored on the SD card. Load cell data can also be logged using an SD card. 
+<br/>
+<br/>
+This project is perfect for hobbyists and professionals looking to monitor weight or load changes wirelessly!
+<br/>
+<br/>
+🚧 This page is under construction <br/> 
 <h2>⚙️ Features</h2>
-•  Display current weight</br>
-•  Tare Scale</br>
-•  Calibrate Scale with user input for weight</br>
+•  Display current weight<br/>
+•  Tare Scale<br/>
+•  Calibrate Scale with user input for weight<br/>
 •  Host access point and webpage with custom domain from SD card<br/>
 <br/>
 <img src="https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/2d799443-ecbb-4e89-ad3e-3e7dfad93a9a" length="50%" width="50%">
@@ -17,7 +21,6 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  Mirco SD Card<br/>
 •  Power Supply (can be used with 🔋 battery for mobile load cell)<br/>
 <br />
-
 <h2>📄 Instructions:</h2>
 1️⃣ Wire ESP32
 <br/>
