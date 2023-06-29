@@ -142,14 +142,9 @@ void loop() {
 
   currentWeight = scale.get_units(10);
   Serial.println(currentWeight);
-  Serial.println(maxWeight);
   // Call the writeWeightToFile() function
   writeWeightToFile();
 
-  // Update the maximum weight if necessary
-  if (currentWeight > maxWeight) {
-    maxWeight = currentWeight;
-  }
 }
 
 void writeWeightToFile() {
