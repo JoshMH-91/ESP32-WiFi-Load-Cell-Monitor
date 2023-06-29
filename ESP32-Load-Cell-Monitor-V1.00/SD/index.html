@@ -116,32 +116,7 @@ function updateWeight() {
   xhttp.send();
 }
 
-function updateMaxWeight() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById('maxWeight').innerHTML = this.responseText;
-    }
-  };
-  xhttp.open('GET', 'getMaxWeight', true);
-  xhttp.send();
-}
-
-function resetMaxWeight(event) {
-  event.preventDefault();
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById('maxWeight').innerHTML = '0.01';
-    }
-  };
-  xhttp.open('POST', 'resetMaxWeight', true);
-  xhttp.send();
-}
-
 setInterval(function(){ updateWeight(); }, 10);
-setInterval(function(){ updateMaxWeight(); }, 1000); // Update maximum weight every second
-document.getElementById("resetMaxWeightBtn").addEventListener("click", resetMaxWeight);
 </script>
 
 
@@ -154,14 +129,11 @@ document.getElementById("resetMaxWeightBtn").addEventListener("click", resetMaxW
     <div>
 	<h2>Current Weight:</h2>
 	<h1><span id="weight">0.0</span></h1>
-	<h2>Max Weight:</h2>
-	<h1><span id="maxWeight">0.0</span></h1>
       	<div class="buttons">
         	<form method="post" action="/tare"><input type="submit" value="Tare"></form>
         	<form method="post" action="/calibrate"><input type="text" name="weight" placeholder="Enter weight"><input type="submit" value="Calibrate"></form>
         	<form method="post" action="/recordStart"><input type="image" src="/start.png" alt="Record Start"></form>
         	<form method="post" action="/recordStop"><input type="image" src="/stop.png" alt="Record Stop"></form>
-		<form method="post" action="/resetMaxWeight"><input type="submit" value="Reset Max Weight"></form>
      	 </div>
     </div>
     <div class="filler"></div>
