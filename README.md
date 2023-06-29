@@ -11,6 +11,7 @@ Future roadmap: <br/>
 •  Improve Error Handling<br/>
 •  Load SSID and Password from config.txt<br/>
 •  restructure/clean up code<br/>
+•  Create model for enclosure that can be 3D printed<br/>
 <h2>⚙️ Features</h2>
 •  Display current weight<br/>
 •  Tare Scale<br/>
