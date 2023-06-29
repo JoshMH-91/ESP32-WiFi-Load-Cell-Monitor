@@ -73,8 +73,8 @@ Default Password:  <code>LoadCell1234</code><br/>
 This is an example of a chart created with the raw data recorded on the SD card:
 <br/>
 <img src="https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/b09c8023-8616-46d8-8be7-6815376f478c" length="50%" width="50%">
-
-
+<br/><br/>
+<a href="https://www.buymeacoffee.com/JoshMH91" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="50" width="200"></a>
 
 
 
