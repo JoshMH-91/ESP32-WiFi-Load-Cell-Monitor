@@ -6,6 +6,7 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  Display current weight</br>
 •  Tare Scale</br>
 •  Calibrate Scale with user input for weight</br>
+•  Host access point and webpage with custom domain from SD card<br/>
 <br/>
 <img src="https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/2d799443-ecbb-4e89-ad3e-3e7dfad93a9a" length="50%" width="50%">
 <h2>📋 Material:</h2>
@@ -36,11 +37,15 @@ Load Cell Monitor designed using an ESP32, allowing wireless viewing through a h
 •  <b>CLK</b> wire to <b>pin 26</b> ESP32<br/>
 •  <b>GND</b> wire to <b>ground</b> on ESP32<br/>
 <br/>
-
-2️⃣ Open provided .ino file in your Arduino IDE download the required libraries and upload the code to the board<br/>
-
-3️⃣ Copy files in SD folder to your SD card.
+2️⃣ Copy files in SD folder to your SD card.
 <br/>
+<br/>
+3️⃣ Open provided .ino file in your Arduino IDE download/install the required libraries and upload the code to the board
+<br/>
+<br/>
+Default Domain:  <code>loadcell.local</code><br/>
+Default SSID:  <code>Load_Cell</code><br/>
+Default Password:  <code>LoadCell1234</code><br/>
 <br/>
 ⭐ Icons used in project created by <a href="https://dryicons.com">DryIcons.com</a>
 <br/>
