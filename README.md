@@ -14,6 +14,8 @@ Future roadmap: <br/>
 •  Create model for enclosure that can be 3D printed<br/>
 <h2>⚙️ Features</h2>
 •  Display current weight<br/>
+•  Display chart of current weight<br/>
+•  Toggle chart between kg and lbs (kg default)<br/>
 •  Tare Scale<br/>
 •  Calibrate Scale with user input for weight<br/>
 •  Host access point and webpage with custom domain from SD card<br/>
