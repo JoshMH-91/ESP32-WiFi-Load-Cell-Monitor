@@ -12,6 +12,9 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
@@ -21,15 +24,15 @@
       text-align: center;
     }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin: 0 auto;
-  max-width: 500px;
-}
+    main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      margin: 0 auto;
+      max-width: 500px;
+    }
 
     .content {
       max-width: 600px;
@@ -60,18 +63,17 @@ main {
       margin: 0;
       vertical-align: middle;
     }
-
+	  
     footer {
       background-color: #333;
       color: #fff;
       padding: 10px;
       text-align: center;
-      position: absolute;
-      bottom: 0;
+      position: relative;
+      margin-top: 20px;
       width: 100%;
     }
 
-    /* Media Queries */
     @media only screen and (max-width: 600px) {
       .content {
         max-width: 400px;
@@ -103,40 +105,146 @@ main {
         margin: 2px;
       }
     }
-  </style>
-<script>
-function updateWeight() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById('weight').innerHTML = this.responseText;
+
+    /* Styles for chart */
+    #weightGraph {
+      border: 1px solid black;
+      width: 100%;
+      max-width: 750px;
+      height: 350px;
+      margin: 10px auto;
+      background-color: black;
     }
-  };
-  xhttp.open('GET', 'getWeight', true);
-  xhttp.send();
-}
+    .axis-label {
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+    }
+  </style>
+	
+  <script>
+    var weightData = [];
+    var maxDataPoints = 50;
+    var maxWeight = 100; // Default to kilograms
+    var isKilograms = true; // Indicates whether the current unit is kilograms
 
-setInterval(function(){ updateWeight(); }, 10);
-</script>
+	function updateWeight() {
+	  var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  var weight = parseFloat(this.responseText);
+		  var weightDisplay = weight.toFixed(1);
 
+		  // Display the unit only when necessary
+		  if (isKilograms) {
+			weightDisplay += ' kg';
+		  } else {
+			weightDisplay += ' lbs';
+		  }
 
+		  document.getElementById('weight').innerHTML = weightDisplay;
+		  weightData.push(weight);
+
+		  if (weightData.length > maxDataPoints) {
+			weightData.shift();
+		  }
+
+		  drawGraph();
+		}
+	  };
+	  xhttp.open('GET', 'getWeight', true);
+	  xhttp.send();
+	}
+
+    function toggleUnit() {
+      isKilograms = !isKilograms;
+      updateWeight();
+      // Update the unit label on the button
+      document.getElementById('unitToggleBtn').innerText = isKilograms ? 'Switch to lbs' : 'Switch to kg';
+    }
+
+    function drawGraph() {
+      var canvas = document.getElementById('weightGraph');
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawBackground(ctx, canvas.width, canvas.height);
+        drawData(ctx, canvas.width, canvas.height);
+        drawAxisLabels(ctx, canvas.width, canvas.height);
+      }
+    }
+
+    setInterval(updateWeight, 1000);
+    drawGraph();
+
+    function drawBackground(ctx, width, height) {
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.beginPath();
+      for (let i = 0; i < width; i += width / 10) {
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, height);
+      }
+      for (let i = 0; i < height; i += height / 10) {
+        ctx.moveTo(0, i);
+        ctx.lineTo(width, i);
+      }
+      ctx.stroke();
+    }
+
+    function drawData(ctx, width, height) {
+      ctx.strokeStyle = 'green';
+      ctx.fillStyle = 'green';
+      ctx.beginPath();
+
+      if (weightData.length > 1) {
+        var x = 0;
+        var xIncrement = width / (weightData.length - 1);
+
+        ctx.moveTo(0, height - weightData[0] * height / maxWeight);
+
+        weightData.forEach(function (weight) {
+          var y = height - (weight * height / maxWeight);
+          ctx.lineTo(x, y);
+          ctx.arc(x, y, 2, 0, 2 * Math.PI);
+          x += xIncrement;
+        });
+      }
+
+      ctx.stroke();
+    }
+
+    function drawAxisLabels(ctx, width, height) {
+      ctx.fillStyle = 'white';
+      ctx.font = '12px Arial';
+      ctx.fillText('Max: ' + (isKilograms ? maxWeight : maxWeight * 2.20462) + (isKilograms ? ' kg' : ' lbs'), 5, 12); // Display as kilograms or pounds
+      ctx.fillText('Min: 0 ' + (isKilograms ? 'kg' : 'lbs'), 5, height - 5); // Display as kilograms or pounds
+    }
+  </script>
+	
 </head>
 <body>
   <header>
     <h1>Load Cell</h1>
   </header>
   <main>
-    <div>
-	<h2>Current Weight:</h2>
-	<h1><span id="weight">0.0</span></h1>
-      	<div class="buttons">
-        	<form method="post" action="/tare"><input type="submit" value="Tare"></form>
-        	<form method="post" action="/calibrate"><input type="text" name="weight" placeholder="Enter weight"><input type="submit" value="Calibrate"></form>
-        	<form method="post" action="/recordStart"><input type="image" src="/start.png" alt="Record Start"></form>
-        	<form method="post" action="/recordStop"><input type="image" src="/stop.png" alt="Record Stop"></form>
-     	 </div>
+    <div class="content">
+      <h2>Current Weight:</h2>
+      <h1><span id="weight">0.0</span></h1>
+      <div class="buttons">
+        <form method="post" action="/tare"><input type="submit" value="Tare"></form>
+        <form method="post" action="/calibrate"><input type="text" name="weight" placeholder="Enter weight"><input type="submit" value="Calibrate"></form>
+        <form method="post" action="/recordStart"><input type="image" src="/start.png" alt="Record Start"></form>
+        <form method="post" action="/recordStop"><input type="image" src="/stop.png" alt="Record Stop"></form>
+      </div>
     </div>
-    <div class="filler"></div>
+    <div class="axis-label">Time →</div>
+    <canvas id="weightGraph"></canvas>
+    <div class="axis-label">Weight (kg) ↑</div>
+    <button id="unitToggleBtn" onclick="toggleUnit()">Switch to lbs</button>
   </main>
   <footer>
     <p>&copy; 2023 Load Cell</p>
