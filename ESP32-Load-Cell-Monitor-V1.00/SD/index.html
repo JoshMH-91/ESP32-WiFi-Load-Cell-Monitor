@@ -117,9 +117,24 @@
     }
     .axis-label {
       text-align: center;
-      color: #fff;
+      color: black;
       font-size: 14px;
     }
+	.button {
+	  font-size: 18px;
+	  padding: 12px 24px;
+	  background-color: #007bff;
+	  color: #fff;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease;
+	  text-transform: uppercase;
+	}
+
+	.button:hover {
+	  background-color: #0056b3; /* Darker blue on hover */
+	}
   </style>
 	
   <script>
@@ -133,13 +148,14 @@
 	  xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 		  var weight = parseFloat(this.responseText);
-		  var weightDisplay = weight.toFixed(1);
+		  var weightDisplay;
 
-		  // Display the unit only when necessary
 		  if (isKilograms) {
-			weightDisplay += ' kg';
+			// Display in kilograms if the unit is kilograms
+			weightDisplay = weight.toFixed(1) + ' kg';
 		  } else {
-			weightDisplay += ' lbs';
+			// Convert to pounds if the unit is pounds
+			weightDisplay = (weight * 2.20462).toFixed(1) + ' lbs';
 		  }
 
 		  document.getElementById('weight').innerHTML = weightDisplay;
@@ -235,8 +251,8 @@
       <h2>Current Weight:</h2>
       <h1><span id="weight">0.0</span></h1>
       <div class="buttons">
-        <form method="post" action="/tare"><input type="submit" value="Tare"></form>
-        <form method="post" action="/calibrate"><input type="text" name="weight" placeholder="Enter weight"><input type="submit" value="Calibrate"></form>
+        <form method="post" action="/tare"><input type="submit" value="Tare" class="button"></form>
+        <form method="post" action="/calibrate"><input type="text" name="weight" placeholder="Enter weight"><input type="submit" value="Calibrate" class="button"></form>
         <form method="post" action="/recordStart"><input type="image" src="/start.png" alt="Record Start"></form>
         <form method="post" action="/recordStop"><input type="image" src="/stop.png" alt="Record Stop"></form>
       </div>
@@ -244,7 +260,8 @@
     <div class="axis-label">Time →</div>
     <canvas id="weightGraph"></canvas>
     <div class="axis-label">Weight (kg) ↑</div>
-    <button id="unitToggleBtn" onclick="toggleUnit()">Switch to lbs</button>
+	<br/>
+    <button id="unitToggleBtn" onclick="toggleUnit()" class="button">Switch to lbs</button>
   </main>
   <footer>
     <p>&copy; 2023 Load Cell</p>
