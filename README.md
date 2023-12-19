@@ -20,6 +20,12 @@ Future roadmap: <br/>
 •  Calibrate Scale with user input for weight<br/>
 •  Host access point and webpage with custom domain from SD card<br/>
 <br/>
+NEW GUI
+<br/>
+<img src="https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/67b4159b-60a7-4cde-80b4-479d2916eb4f" length="50%" width="50%">
+<br/>
+OLD GUI
+<br/>
 <img src="https://github.com/JoshMH-91/ESP32-WiFi-Load-Cell-Monitor/assets/138040193/2d799443-ecbb-4e89-ad3e-3e7dfad93a9a" length="50%" width="50%">
 <h2>📋 Material:</h2>
 •  ESP32 Board (I used <a href="https://www.amazon.com/AITRIP-Development-Microcontroller-Integrated-Amplifiers/dp/B0B19KRPRC/ref=sr_1_5?crid=2V78DRIQ2YHNC&keywords=airtip+esp32+usb+c&qid=1687975641&sprefix=airtip+esp32+usb%2Caps%2C130&sr=8-5">ESP-WROOM-32</a>) <br/>
