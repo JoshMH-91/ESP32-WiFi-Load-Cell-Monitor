@@ -17,8 +17,8 @@ HX711 scale;
 uint8_t dataPin = 25; // for esp32
 uint8_t clockPin = 26; // for esp32
 
-//Default Calibration Factor
-const float defaultCalibrationFactor = -43188.00;
+//Default Calibration Factor 100kg load cell
+float calibrationFactor = -43188.00;
 
 // SD card pins
 const int SD_CS_PIN = 21;
@@ -50,12 +50,11 @@ void setup() {
   }
   Serial.println("[+] mDNS responder started with hostname 'loadcell.local'");
 
+  Serial.println("Load Cell initializing...");
   scale.begin(dataPin, clockPin);
   scale.set_gain(128);
   delay(1000);
-  scale.tare();
-  delay(1000);
-  scale.set_scale(defaultCalibrationFactor);
+  initializeScale();
 
   if (!SD.begin(SD_CS_PIN)) {
     Serial.println("Failed to initialize SD card!");
@@ -115,14 +114,19 @@ server.on("/tare", HTTP_POST, [](AsyncWebServerRequest *request){
 });
 
 server.on("/calibrate", HTTP_POST, [](AsyncWebServerRequest *request){
-  if(request->hasParam("weight", true)){
-      float calibrateWeight = request->getParam("weight", true)->value().toFloat();
-      scale.set_scale(scale.get_units(20) / calibrateWeight);
-      float calFactor = scale.get_scale();
-      Serial.println("Calibration Factor:");
-      Serial.println(calFactor);
-      request->redirect("/");
-  }
+    
+    // Reset the scale
+    Serial.println("recalibrating...");
+    scale.set_scale(1);
+
+    if(request->hasParam("weight", true)){
+        float calibrateWeight = request->getParam("weight", true)->value().toFloat();
+        calibrationFactor = scale.get_units(20) / calibrateWeight;
+        scale.set_scale(calibrationFactor);
+        Serial.println("New Calibration Factor:");
+        Serial.println(calibrationFactor);
+        request->redirect("/");
+    }
 });
 
 server.on("/start.png", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -172,4 +176,13 @@ void writeWeightToFile() {
      // dataFile.close();
     }
   }
+}
+
+void initializeScale(){
+  scale.tare();
+  Serial.println("Scale Zeroed");
+  delay(1000);
+  scale.set_scale(calibrationFactor);
+  Serial.println("Scale Calibration Factor set to:  ");
+  Serial.println(calibrationFactor);
 }
