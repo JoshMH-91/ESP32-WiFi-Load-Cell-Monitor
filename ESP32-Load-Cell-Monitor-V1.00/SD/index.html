@@ -1,270 +1,403 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Load Cell</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Cell Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
 
-    main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-      margin: 0 auto;
-      max-width: 500px;
-    }
+        header {
+            background: linear-gradient(to right, #0077ff, #00bfff);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+			margin-bottom: 20px;
+        }
 
-    .content {
-      max-width: 600px;
-      width: 90%;
-      text-align: center;
-      margin: 0 auto;
-    }
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            margin: 0 auto;
+            max-width: 600px;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
 
-    form {
-      display: inline-block;
-      margin: 10px;
-    }
+        .content {
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            margin: 0 auto;
+        }
 
-    input[type=text], input[type=submit] {
-      font-size: 20px;
-      padding: 10px;
-    }
+        form {
+            display: inline-block;
+            margin: 10px;
+        }
 
-    h1 {
-      font-size: 50px;
-      margin-bottom: 20px;
-    }
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"] {
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
 
-    input[type="image"] {
-      border: none;
-      background: none;
-      padding: 0;
-      margin: 0;
-      vertical-align: middle;
-    }
-	  
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-      position: relative;
-      margin-top: 20px;
-      width: 100%;
-    }
-
-    @media only screen and (max-width: 600px) {
-      .content {
-        max-width: 400px;
-      }
-      h1 {
-        font-size: 36px;
-      }
-      input[type=text], input[type=submit] {
-        font-size: 16px;
-        padding: 8px;
-      }
-      form {
-        margin: 5px;
-      }
-    }
-
-    @media only screen and (max-width: 400px) {
-      .content {
-        max-width: 300px;
-      }
-      h1 {
-        font-size: 30px;
-      }
-      input[type=text], input[type=submit] {
-        font-size: 14px;
-        padding: 6px;
-      }
-      form {
-        margin: 2px;
-      }
-    }
-
-    /* Styles for chart */
-    #weightGraph {
-      border: 1px solid black;
-      width: 100%;
-      max-width: 750px;
-      height: 350px;
-      margin: 10px auto;
-      background-color: black;
-    }
-    .axis-label {
-      text-align: center;
-      color: black;
-      font-size: 14px;
-    }
-	.button {
-	  font-size: 18px;
-	  padding: 12px 24px;
-	  background-color: #007bff;
-	  color: #fff;
-	  border: none;
-	  border-radius: 4px;
-	  cursor: pointer;
-	  transition: background-color 0.3s ease;
-	  text-transform: uppercase;
-	}
-
-	.button:hover {
-	  background-color: #0056b3; /* Darker blue on hover */
-	}
-  </style>
-	
-  <script>
-    var weightData = [];
-    var maxDataPoints = 50;
-    var maxWeight = 100; // Default to kilograms
-    var isKilograms = true; // Indicates whether the current unit is kilograms
-
-	function updateWeight() {
-	  var xhttp = new XMLHttpRequest();
-	  xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-		  var weight = parseFloat(this.responseText);
-		  var weightDisplay;
-
-		  if (isKilograms) {
-			// Display in kilograms if the unit is kilograms
-			weightDisplay = weight.toFixed(1) + ' kg';
-		  } else {
-			// Convert to pounds if the unit is pounds
-			weightDisplay = (weight * 2.20462).toFixed(1) + ' lbs';
-		  }
-
-		  document.getElementById('weight').innerHTML = weightDisplay;
-		  weightData.push(weight);
-
-		  if (weightData.length > maxDataPoints) {
-			weightData.shift();
-		  }
-
-		  drawGraph();
+        h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+		
+		h1:not(header h1){
+		    font-size: 50px;
+            margin-bottom: 20px;
+            color: #333;
 		}
-	  };
-	  xhttp.open('GET', 'getWeight', true);
-	  xhttp.send();
-	}
 
-    function toggleUnit() {
-      isKilograms = !isKilograms;
-      updateWeight();
-      // Update the unit label on the button
-      document.getElementById('unitToggleBtn').innerText = isKilograms ? 'Switch to lbs' : 'Switch to kg';
-    }
+        input[type="image"] {
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+            vertical-align: middle;
+        }
 
-    function drawGraph() {
-      var canvas = document.getElementById('weightGraph');
-      if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        footer {
+            background: linear-gradient(to right, #0077ff, #00bfff);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            margin-top: 20px;
+        }
 
-        drawBackground(ctx, canvas.width, canvas.height);
-        drawData(ctx, canvas.width, canvas.height);
-        drawAxisLabels(ctx, canvas.width, canvas.height);
-      }
-    }
+        .button {
+            font-size: 18px;
+            padding: 12px 24px;
+            background-color: #0077ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+			box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-    setInterval(updateWeight, 1000);
-    drawGraph();
+        .button:hover {
+            background-color: #0056b3;
+        }
 
-    function drawBackground(ctx, width, height) {
-      ctx.fillStyle = 'black';
-      ctx.fillRect(0, 0, width, height);
+        /* Styles for chart */
+        #weightGraph {
+            border: 1px solid #333;
+			border-radius:  4px;
+            width: 100%;
+            max-width: 800px;
+            height: 350px;
+            margin: 10px auto;
+            background-color: #fff;
+			box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.beginPath();
-      for (let i = 0; i < width; i += width / 10) {
-        ctx.moveTo(i, 0);
-        ctx.lineTo(i, height);
-      }
-      for (let i = 0; i < height; i += height / 10) {
-        ctx.moveTo(0, i);
-        ctx.lineTo(width, i);
-      }
-      ctx.stroke();
-    }
+        .axis-label {
+            text-align: center;
+            color: #333;
+            font-size: 14px;
+        }
 
-    function drawData(ctx, width, height) {
-      ctx.strokeStyle = 'green';
-      ctx.fillStyle = 'green';
-      ctx.beginPath();
+        .capacity-section {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-      if (weightData.length > 1) {
-        var x = 0;
-        var xIncrement = width / (weightData.length - 1);
+        .capacity-section h2 {
+            font-size: 24px;
+            color: #333;
+        }
 
-        ctx.moveTo(0, height - weightData[0] * height / maxWeight);
+        #capacity {
+            font-size: 20px;
+            padding: 10px;
+            width: 100px;
+        }
 
-        weightData.forEach(function (weight) {
-          var y = height - (weight * height / maxWeight);
-          ctx.lineTo(x, y);
-          ctx.arc(x, y, 2, 0, 2 * Math.PI);
-          x += xIncrement;
-        });
-      }
+        .update-button {
+            font-size: 18px;
+            padding: 12px 24px;
+            background-color: #0077ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+			box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-      ctx.stroke();
-    }
+        .update-button:hover {
+            background-color: #0056b3;
+        }
+		
+		.input-container {
+			position: relative;
+			display: inline-block;
+		}
 
-    function drawAxisLabels(ctx, width, height) {
-      ctx.fillStyle = 'white';
-      ctx.font = '12px Arial';
-      ctx.fillText('Max: ' + (isKilograms ? maxWeight : maxWeight * 2.20462) + (isKilograms ? ' kg' : ' lbs'), 5, 12); // Display as kilograms or pounds
-      ctx.fillText('Min: 0 ' + (isKilograms ? 'kg' : 'lbs'), 5, height - 5); // Display as kilograms or pounds
-    }
-  </script>
-	
+		#capacity {
+			padding-right: 30px; /* Adjust as needed */
+		}
+
+		.unit-label {
+			position: absolute;
+			right: 10px; /* Adjust as needed */
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			height: 20px; /* Adjust as needed */
+			line-height: 20px; /* Adjust as needed */
+			color: #aaa; /* Adjust as needed */
+			pointer-events: none;
+		}
+    </style>
+
+    <script>
+        var weightData = [];
+        var maxDataPoints = 50;
+        var maxWeight = 100; // Default to kilograms
+        var isKilograms = true; // Indicates whether the current unit is kilograms
+
+        function updateWeight() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var weight = parseFloat(this.responseText);
+                    var weightDisplay;
+
+                    if (isKilograms) {
+                        // Display in kilograms if the unit is kilograms
+                        weightDisplay = weight.toFixed(1) + ' kg';
+                    } else {
+                        // Convert to pounds if the unit is pounds
+                        weightDisplay = (weight * 2.20462).toFixed(1) + ' lbs';
+                    }
+
+                    document.getElementById('weight').innerHTML = weightDisplay;
+                    weightData.push(weight);
+
+                    if (weightData.length > maxDataPoints) {
+                        weightData.shift();
+                    }
+
+                    drawGraph();
+                }
+            };
+            xhttp.open('GET', 'getWeight', true);
+            xhttp.send();
+        }
+
+        function toggleUnit() {
+            isKilograms = !isKilograms;
+            updateWeight();
+            // Update the unit label on the button
+            document.getElementById('unitToggleBtn').innerText = isKilograms ? 'Switch to lbs' : 'Switch to kg';
+        }
+
+        function drawGraph() {
+            var canvas = document.getElementById('weightGraph');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                drawBackground(ctx, canvas.width, canvas.height);
+                drawData(ctx, canvas.width, canvas.height);
+                drawAxisLabels(ctx, canvas.width, canvas.height);
+            }
+        }
+
+        setInterval(updateWeight, 1000);
+        drawGraph();
+
+        function drawBackground(ctx, width, height) {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.strokeStyle = 'rgba(105, 105, 105, 0.2)';
+            ctx.beginPath();
+            for (let i = 0; i < width; i += width / 10) {
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, height);
+            }
+            for (let i = 0; i < height; i += height / 10) {
+                ctx.moveTo(0, i);
+                ctx.lineTo(width, i);
+            }
+            ctx.stroke();
+        }
+
+        function drawData(ctx, width, height) {
+            ctx.strokeStyle = 'rgb(0,86,179)';
+            ctx.fillStyle = 'rgb(0,86,179)';
+            ctx.beginPath();
+
+            if (weightData.length > 1) {
+                var x = 0;
+                var xIncrement = width / (weightData.length - 1);
+
+                ctx.moveTo(0, height - weightData[0] * height / maxWeight);
+
+                weightData.forEach(function (weight) {
+                    var y = height - (weight * height / maxWeight);
+                    ctx.lineTo(x, y);
+                    ctx.arc(x, y, 2, 0, 2 * Math.PI);
+                    x += xIncrement;
+                });
+            }
+
+            ctx.stroke();
+        }
+
+        function drawAxisLabels(ctx, width, height) {
+            ctx.fillStyle = 'white';
+            ctx.font = '12px Arial';
+            ctx.fillText('Max: ' + (isKilograms ? maxWeight : maxWeight * 2.20462) + (isKilograms ? ' kg' : ' lbs'), 5, 12); // Display as kilograms or pounds
+            ctx.fillText('Min: 0 ' + (isKilograms ? 'kg' : 'lbs'), 5, height - 5); // Display as kilograms or pounds
+        }
+
+        function updateCapacity() {
+            var capacityInput = document.getElementById('capacity');
+            var newCapacity = parseFloat(capacityInput.value);
+
+            if (!isNaN(newCapacity)) {
+                maxWeight = newCapacity;
+                updateWeight();
+            } else {
+                alert('Please enter a valid capacity.');
+            }
+        }
+		
+		// Function for Tare
+        function tare() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Handle the response here, maybe update the UI
+                }
+            };
+            xhttp.open("POST", "/tare", true);
+            xhttp.send();
+        }
+		
+		 // Function for Calibrate
+        function calibrate() {
+            var weight = document.getElementById('calibrateWeight').value;
+
+            // Check if the weight is a valid number and greater than 0
+            if (!weight || isNaN(weight) || parseFloat(weight) <= 0) {
+                alert('Please enter a valid weight greater than 0.');
+                return; // Exit the function if the input is invalid
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Handle the response here, maybe update the UI
+                }
+            };
+            xhttp.open("POST", "/calibrate", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("weight=" + weight);
+        }
+		
+		//Function to start recording
+		function startRecording() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById('recordingStatus').innerText = 'Recording';
+				}
+			};
+			xhttp.open("POST", "/recordStart", true);
+			xhttp.send();
+		}
+		
+		//Function to stop recording
+		function stopRecording() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById('recordingStatus').innerText = 'Not Recording';
+				}
+			};
+			xhttp.open("POST", "/recordStop", true);
+			xhttp.send();
+		}
+    </script>
 </head>
+
 <body>
-  <header>
-    <h1>Load Cell</h1>
-  </header>
-  <main>
-    <div class="content">
-      <h2>Current Weight:</h2>
-      <h1><span id="weight">0.0</span></h1>
-      <div class="buttons">
-        <form method="post" action="/tare"><input type="submit" value="Tare" class="button"></form>
-        <form method="post" action="/calibrate"><input type="text" name="weight" placeholder="Enter weight"><input type="submit" value="Calibrate" class="button"></form>
-        <form method="post" action="/recordStart"><input type="image" src="/start.png" alt="Record Start"></form>
-        <form method="post" action="/recordStop"><input type="image" src="/stop.png" alt="Record Stop"></form>
-      </div>
-    </div>
-    <div class="axis-label">Time →</div>
-    <canvas id="weightGraph"></canvas>
-    <div class="axis-label">Weight ↑</div>
-	<br/>
-    <button id="unitToggleBtn" onclick="toggleUnit()" class="button">Switch to lbs</button>
-  </main>
-  <footer>
-    <p>&copy; 2023 Load Cell</p>
-  </footer>
+    <header>
+        <h1>Load Cell Dashboard</h1>
+    </header>
+    <main>
+        <div class="content">
+            <h2>Current Weight:</h2>
+            <h1><span id="weight">0.0</span></h1>
+            <div class="buttons">
+				<button class="button" onclick="tare()">Tare / Zero</button>
+				<br/>
+				<br/>
+				<input type="text" id="calibrateWeight" placeholder="Enter weight">
+				<button class="button" onclick="calibrate()">Calibrate</button>
+				<br/>
+				<br/>
+				<img src="/start.png" alt="Record Start" onclick="startRecording()" style="cursor: pointer;">
+				<img src="/stop.png" alt="Record Stop" onclick="stopRecording()" style="cursor: pointer;">
+				<br/>
+				<div id="recordingStatus">Not Recording</div>
+				<br/>
+				<br/>
+            </div>
+        </div>
+        <div class="axis-label">Time →</div>
+        <canvas id="weightGraph"></canvas>
+        <div class="axis-label">Weight ↑</div>
+        <br />
+        <button id="unitToggleBtn" onclick="toggleUnit()" class="button">Switch to lbs</button>
+        <div class="capacity-section">
+            <h2>Load Cell Capacity (kg):</h2>
+            <div class="input-container">
+				<input type="number" id="capacity" value="100">
+				<label for="capacity" class="unit-label">kg</label>
+			</div>
+			<br />
+            <br />
+            <center><button onclick="updateCapacity()" class="update-button">Update Capacity</button></center>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Load Cell</p>
+    </footer>
 </body>
-</html>
